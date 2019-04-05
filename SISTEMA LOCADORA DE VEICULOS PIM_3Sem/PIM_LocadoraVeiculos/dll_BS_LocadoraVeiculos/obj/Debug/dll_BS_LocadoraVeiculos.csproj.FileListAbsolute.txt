@@ -1,0 +1,4 @@
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_BS_LocadoraVeiculos\bin\Debug\dll_BS_LocadoraVeiculos.dll
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_BS_LocadoraVeiculos\bin\Debug\dll_BS_LocadoraVeiculos.pdb
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_BS_LocadoraVeiculos\obj\Debug\dll_BS_LocadoraVeiculos.dll
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_BS_LocadoraVeiculos\obj\Debug\dll_BS_LocadoraVeiculos.pdb

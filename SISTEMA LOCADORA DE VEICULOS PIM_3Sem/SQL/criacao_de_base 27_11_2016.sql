@@ -1,0 +1,494 @@
+
+USE [MASTER]
+GO
+
+
+
+IF EXISTS(SELECT * FROM SYS.DATABASES WHERE NAME = 'PIM_ALOCAR')
+	DROP DATABASE [PIM_ALOCAR]
+GO
+
+--Criação da base de dados: 
+CREATE DATABASE [PIM_ALOCAR]
+GO
+
+USE [PIM_ALOCAR]
+GO
+
+--################################
+--########## TABELAS #############
+--################################
+
+--Criação da tabela de Usuários:
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'USUARIOS')
+	DROP TABLE USUARIOS
+GO
+
+CREATE TABLE USUARIOS(
+	codUSU INT NOT NULL IDENTITY,
+	loginUSU VARCHAR(20) NOT NULL,
+	senhaUSU CHAR(7) NOT NULL,
+	perfilUSU VARCHAR(20) NOT NULL, 
+	CONSTRAINT pk_codUSU PRIMARY KEY  (codUSU) 
+
+);
+
+--Criação da tabela de Clientes
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'CLIENTES')
+	DROP TABLE CLIENTES
+GO
+
+
+--SELECT LEN('43.700.752-2')
+
+
+--SELECT LEN('419.335.698-16')
+
+CREATE TABLE CLIENTES(
+	codCLI INT NOT NULL IDENTITY,
+	nomeCLI NVARCHAR(50) NOT NULL,
+	cepCLI NVARCHAR(20) NULL,
+	enderCLI NVARCHAR(250) NOT NULL,
+	cidadeCLI NVARCHAR(100) NOT NULL,
+	estadoCLI CHAR(2) NOT NULL,
+	bairroCLI NVARCHAR(100) NOT NULL,
+	numcasaCLI INT NULL,
+	emailCLI VARCHAR(50) NULL,
+	rgCLI VARCHAR(20) NOT NULL,
+	cpfCLI VARCHAR(20) NOT NULL,
+	datanascCLI DATETIME NOT NULL,
+	CNHCLI VARCHAR(20) NOT NULL,
+	telefonefixoCLI VARCHAR(20) NULL,
+	telefonecelularCLI VARCHAR(20) NULL,
+	datacadastroCLI DATETIME DEFAULT GETDATE(),
+	senhaCLI VARCHAR(50) NOT NULL DEFAULT(0)
+	CONSTRAINT pk_codCLI PRIMARY KEY  (codCLI) 
+
+);
+
+
+--Criação da tabela de Veículos
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'VEICULOS')
+	DROP TABLE VEICULOS
+GO
+
+CREATE TABLE VEICULOS(
+	codVEIC INT NOT NULL IDENTITY,
+	chasVEIC NVARCHAR(200) NOT NULL ,
+	corVEIC NVARCHAR(20) NOT NULL,
+	placaVEIC NVARCHAR(20) NOT NULL,
+	marcaVEIC NVARCHAR (50) NOT NULL,
+	datafabrVEIC DATETIME NOT NULL,
+	fabricanteVEIC NVARCHAR(30) NOT NULL,
+	datacompraVEIC DATETIME NOT NULL,
+	ultimarevisaoVEIC DATETIME NOT NULL,
+	kmVEIC NUMERIC(18,2) NOT NULL,
+	imgVEIC NVARCHAR(200) NULL ,
+	descVEIC NVARCHAR(200),
+	CONSTRAINT pk_codVEIC PRIMARY KEY  (codVEIC)
+);
+
+
+--Criação da tabela de Funcionários
+
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'FUNCIONARIOS')
+	DROP TABLE FUNCIONARIOS
+GO
+
+CREATE TABLE FUNCIONARIOS(
+	codFUNC INT NOT NULL IDENTITY,
+	nomeFUNC NVARCHAR(50) NOT NULL,
+	cepFUNC NVARCHAR(50) NOT NULL,
+	enderFUNC NVARCHAR(250) NOT NULL,
+	cidadeFUNC NVARCHAR(100) NOT NULL,
+	estadoFUNC CHAR(2) NOT NULL,
+	bairroFUNC NVARCHAR(100) NOT NULL,
+	telefoneFUNC VARCHAR(20) NOT NULL,
+	datanascFUNC DATETIME NOT NULL,
+	rgFUNC VARCHAR(12) NOT NULL,
+	cpfFUNC VARCHAR(20) NOT NULL,
+	dataadmiss DATETIME NOT NULL,
+	datademiss DATETIME NULL,
+	perfilusuFUNC NVARCHAR(100) NULL,
+	numcasaFUNC INT NULL,
+	CONSTRAINT pk_codFUNC PRIMARY KEY  (codFUNC)
+	
+
+);
+
+--Criação da tabela de Reservas de veículos:
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'RESERVAS')
+	DROP TABLE RESERVAS
+GO
+
+CREATE TABLE RESERVAS(
+	codRES INT NOT NULL IDENTITY,
+	valordiariaRES NVARCHAR(10) NOT NULL,
+	diasRES NVARCHAR(10) NOT NULL,
+	dataRES DATETIME DEFAULT GETDATE(),
+	datadevolucaoRES DATETIME,
+	cliRES INT NOT NULL,
+	veicRES INT NOT NULL,
+	funcRES INT NOT NULL,
+	situacaoRES CHAR(2) DEFAULT 'A', --INDICA SE ESTÁ RESERVADO OU DEVOLVIDO --  A: ALUGADO, D: DISPONÍVEL
+	protocoloRES  NVARCHAR(100) NOT NULL,
+	valortotalRES NVARCHAR(10) DEFAULT '0.00',
+	CONSTRAINT pk_codRES PRIMARY KEY (codRES),
+	FOREIGN KEY (cliRES) REFERENCES CLIENTES(codCLI),
+	FOREIGN KEY (veicRES) REFERENCES VEICULOS(codVEIC),
+	FOREIGN KEY (funcRES) REFERENCES FUNCIONARIOS(codFUNC)
+);
+
+--Criação da tabela de Pagamentos:
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'PGTOS')
+	DROP TABLE PGTOS
+GO
+
+--ENGLOBA TABELA DE VALORES
+
+CREATE TABLE PGTOS(
+	codPGTO INT NOT NULL IDENTITY,
+	formaPGTO NVARCHAR(50),
+	valorPGTO NVARCHAR(50),
+	qtdparcelasPGTO INT NULL,
+	statuscartaoPGTO CHAR(2) NULL, -- P = PAGO , NP = NAO PAGO
+	resPGTO INT NOT NULL,
+	dataPGTO DATETIME DEFAULT GETDATE(),
+	CONSTRAINT pk_codPGTO PRIMARY KEY (codPGTO),
+	FOREIGN KEY (resPGTO) REFERENCES RESERVAS(codRES)
+);
+
+--Criação da tabela de Contratos:
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'CONTRATOS')
+	DROP TABLE CONTRATOS
+GO
+
+CREATE TABLE CONTRATOS(
+	codCON INT NOT NULL IDENTITY,
+	dataemissao DATETIME DEFAULT GETDATE(),
+	pgtoCON INT NOT NULL,
+	cliCON INT NOT NULL,
+	resCON INT NOT NULL,
+	CONSTRAINT pk_codCON PRIMARY KEY (codCON),
+	FOREIGN KEY (resCON) REFERENCES RESERVAS(codRES)
+);
+
+--Criação da tabela de Multas:
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'MULTAS')
+	DROP TABLE MULTAS
+GO
+
+CREATE TABLE MULTAS(
+	codMULT INT NOT NULL IDENTITY,
+	motivoMULT VARCHAR(150) NOT NULL,
+	valorMULT VARCHAR(150) NOT NULL,
+	resMULT INT NOT NULL,
+	--conMULT INT NOT NULL,
+	--cliMULT INT NOT NULL,
+	--veicMULT INT NOT NULL,
+	situacaoMULT CHAR(2) NOT NULL, --INDICA SE ESTÁ PAGO P
+	CONSTRAINT pk_codMULT PRIMARY KEY (codMULT),
+	FOREIGN KEY (resMULT) REFERENCES RESERVAS(codRES)
+	--FOREIGN KEY (cliMULT) REFERENCES CLIENTES(codCLI),
+	--FOREIGN KEY (conMULT) REFERENCES CONTRATOS(codCON),
+	--FOREIGN KEY (veicMULT) REFERENCES VEICULOS(codVEIC)
+);
+
+
+--Criação da tabela de Apólice de Seguros:
+IF EXISTS(SELECT * FROM SYS.TABLES WHERE NAME LIKE 'APOSEG')
+	DROP TABLE APOSEG
+GO
+
+CREATE TABLE APOSEG(
+	protAPOSEG NVARCHAR(20) NOT NULL,
+	conAPOSEG INT NOT NULL IDENTITY,
+	cliAPOSEG INT NOT NULL,
+	CONSTRAINT pk_protAPOSEG PRIMARY KEY (protAPOSEG),
+	FOREIGN KEY (conAPOSEG) REFERENCES CONTRATOS(codCON),
+	FOREIGN KEY (cliAPOSEG) REFERENCES CLIENTES(codCLI),
+);
+
+--################################
+--########## VIEWS ###############
+--################################
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'CarregarCLI')
+	DROP VIEW CarregarCLI
+GO
+
+CREATE VIEW CarregarCLI
+AS
+
+	SELECT *
+	FROM CLIENTES
+
+GO
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'ConsultaCLI')
+	DROP VIEW ConsultaCLI
+GO
+
+CREATE VIEW ConsultaCLI
+AS
+
+
+	SELECT codCLI AS CODIGO, nomeCLI AS NOME,rgCLI AS RG,
+	cpfCLI AS CPF,CNHCLI AS CNH,enderCLI AS LOGRADOURO,
+	cidadeCLI AS CIDADE,estadoCLI AS ESTADO,
+	CASE WHEN telefonefixoCLI = '(  )      -' THEN telefonecelularCLI ELSE telefonefixoCLI END CONTATO ,
+	datacadastroCLI AS [DATA CADASTRO]
+	FROM CLIENTES
+
+
+GO
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'ConsultaFUNC')
+	DROP VIEW ConsultaFUNC
+GO
+CREATE VIEW ConsultaFUNC
+AS
+		SELECT codFUNC AS CODIGO,nomeFUNC AS NOME,cpfFUNC AS CPF,rgFUNC AS RG 
+		,enderFUNC AS ENDERECO, estadoFUNC AS ESTADO,dataadmiss AS [DATA ADMISSAO]
+		,COALESCE(perfilUSU,'Sem acesso ao sistema') AS [Perfil Usuario]
+		FROM FUNCIONARIOS
+		LEFT JOIN USUARIOS ON perfilUSU = perfilusuFUNC
+
+GO
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'ConsultaVEIC')
+	DROP VIEW ConsultaVEIC
+GO
+CREATE VIEW ConsultaVEIC
+AS
+		SELECT codVEIC AS CODIGO,marcaVEIC AS MARCA,fabricanteVEIC AS FABRICANTE,kmVEIC AS KM
+		,datacompraVEIC AS [COMPRADO], datafabrVEIC AS [FABRICADO], ultimarevisaoVEIC AS [DATA DA ULTIMA REVISAO]
+		FROM VEICULOS
+
+GO
+
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'ConsultaVeicDispon')
+	DROP VIEW ConsultaVeicDispon
+GO
+CREATE VIEW ConsultaVeicDispon
+		AS
+		
+		SELECT * 
+		FROM ConsultaVEIC
+		WHERE CODIGO 
+		NOT IN (
+				SELECT codVEIC
+				FROM RESERVAS 
+				INNER JOIN VEICULOS ON veicRES = codVEIC  
+				WHERE situacaoRES = 'A'
+			)
+GO
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'ConsultaReservados')
+	DROP VIEW ConsultaReservados
+GO
+
+CREATE VIEW ConsultaReservados
+
+AS
+	SELECT codRES AS CODIGO,
+	nomeCLI AS CLIENTE, cpfCLI AS CPF,
+	marcaVEIC AS VEICULO,
+	valordiariaRES AS DIARIA,dataRES AS DATA_RESERVA,datadevolucaoRES AS DATA_DEVOLUCAO, protocoloRES AS PROTOCOLO
+	FROM RESERVAS
+	INNER JOIN CLIENTES ON cliRES = codCLI 
+	INNER JOIN VEICULOS ON veicRES = codVEIC
+	AND situacaoRES = 'A' 
+GO
+
+
+
+--################################
+--########## CARGAS ###############
+--################################
+
+INSERT INTO CLIENTES 
+(nomeCLI,cepCLI,rgCLI,cpfCLI,cnhCLI,datanascCLI,
+telefonecelularCLI,emailCLI,enderCLI,cidadeCLI,bairroCLI,
+estadoCLI,telefonefixoCLI,numcasaCLI)
+VALUES( 'Roberto Souza Figueiredo','05351-080',
+'43,912,019-2','419,335,698-16','10293043430',
+'27/11/1980 00:00:00','(11) 96728-2891','robertosouza@hotmail.com',
+'Otávio de Morais','São Paulo','Cidade São Francisco','SP',
+'(11) 3719-0840',214)
+
+GO
+
+INSERT INTO CLIENTES 
+(nomeCLI,cepCLI,rgCLI,cpfCLI,cnhCLI,datanascCLI,telefonecelularCLI
+,emailCLI,enderCLI,cidadeCLI,bairroCLI,estadoCLI,telefonefixoCLI,
+numcasaCLI)VALUES( 'Dorksons Lima',
+'05351-060','42,768,291-0','847,591,921-16',
+'19294839439','27/11/1960 00:00:00','(11) 95839-3103',
+'lima_dk@hotmail.com','Coronel Jaime Americano','São Paulo',
+'Vila São Francisco','SP','(11) 4334-0006',123)
+
+GO
+
+INSERT INTO VEICULOS (chasVEIC,fabricanteVEIC,placaVEIC,
+marcaVEIC,corVEIC,kmVEIC,datafabrVEIC,datacompraVEIC,ultimarevisaoVEIC,
+imgVEIC,descVEIC)VALUES( 
+'2010s0s1203010101','FORD ECOSPORT','103-9202','FORD','Vermelho','12000',
+'27/11/1980','27/11/2016','30/11/2016','C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\Veiculos\EcoEsport.jpg','')
+
+GO
+
+INSERT INTO VEICULOS (chasVEIC,fabricanteVEIC,placaVEIC,marcaVEIC,corVEIC,kmVEIC,datafabrVEIC,
+datacompraVEIC,ultimarevisaoVEIC,imgVEIC,descVEIC)
+VALUES( '10230s0s010102030','Fiat','abc-1004','Uno','amarelho','35600','27/11/1980',
+'27/11/2016','30/11/2016',
+'C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\Veiculos\FiatUno_Economy.jpg','Veículo em ótimo estado')
+
+GO
+INSERT INTO USUARIOS
+VALUES('admin',123,'admin')
+GO
+INSERT INTO USUARIOS
+VALUES('Denise Carla',123,'Atendente')
+GO
+INSERT INTO USUARIOS
+VALUES('LucasS',123,'Gestor de frota')
+GO
+INSERT INTO USUARIOS
+VALUES('Luiz Alcântara',123,'Gerente geral')
+GO
+INSERT INTO USUARIOS
+VALUES('José',123,'Gestor de RH')
+GO
+
+
+INSERT INTO FUNCIONARIOS (nomeFUNC,cepFUNC,enderFUNC,cidadeFUNC,estadoFUNC,bairroFUNC ,telefoneFUNC,
+datanascFUNC,rgFUNC,cpfFUNC,dataadmiss,datademiss,numcasaFUNC,perfilusuFUNC)VALUES( 'Erick Dockhorn','05351-060','Coronel Jaime Americano',
+'São Paulo','SP','Vila São Francisco','(11) 3719-8939','05/08/1993','43,700,752-2','419,335,698-15','29/06/2016','',110,'admin')
+
+GO
+
+
+INSERT INTO FUNCIONARIOS (nomeFUNC,cepFUNC,enderFUNC,cidadeFUNC,estadoFUNC,bairroFUNC ,telefoneFUNC,datanascFUNC,
+rgFUNC,cpfFUNC,dataadmiss,datademiss,numcasaFUNC,perfilusuFUNC)VALUES( 'Lucas Silveira Caique','08653-005','Giovani Baptista Raffo',
+'Suzano','SP','Chácara Estância Paulista','(11) 3818-2829','11/02/1992','20,391,020-2','418,294,829-21','01/11/2016','',3,'Gestor de frota')
+
+GO
+
+INSERT INTO FUNCIONARIOS (nomeFUNC,cepFUNC,enderFUNC,cidadeFUNC,
+estadoFUNC,bairroFUNC ,telefoneFUNC,datanascFUNC,
+rgFUNC,cpfFUNC,dataadmiss,datademiss,numcasaFUNC,perfilusuFUNC)
+VALUES( 'José Carlos de Souza','16202-196','Annibal Possani','Birigüi','SP',
+'Residencial Monte Líbano','(11) 5303-1023','27/11/1967','14,953,101-9','419,475,719-90',
+'27/11/2016','',500,'Gestor de RH')
+
+GO
+
+INSERT INTO FUNCIONARIOS (nomeFUNC,cepFUNC,enderFUNC,cidadeFUNC,estadoFUNC,bairroFUNC ,
+telefoneFUNC,datanascFUNC,rgFUNC,cpfFUNC,dataadmiss,datademiss,numcasaFUNC,
+perfilusuFUNC)VALUES( 'Luiz Alcântara de Souza','23941-000',
+'Mário Covas - do km 495,600 ao km 502,0','Angra dos Reis','RJ','Ariró (Cunhambebe)','(11) 3712-0129','27/11/1980',
+'10,439,301-0','418,272,814-31','30/11/2016','',80,'Gerente geral')
+
+GO
+
+INSERT INTO FUNCIONARIOS (nomeFUNC,cepFUNC,enderFUNC,cidadeFUNC,estadoFUNC,bairroFUNC 
+,telefoneFUNC,datanascFUNC,rgFUNC,cpfFUNC,dataadmiss,datademiss,numcasaFUNC,perfilusuFUNC)
+VALUES( 'Denise Carla Ferreira','72916-330','16','Águas Lindas de Goiás','GO','Jardim Alterosa',
+'(11) 3618-0909','27/11/1995','02,941,029-2','482,938,391-18','27/11/2015','',23,'Atendente')
+
+GO
+
+
+
+
+-- 1) OS RELATÓRIOS SERÃO VIEWS NO BANCO DE DADOS EXPORTÁVEIS PARA EXCEL 
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'vw_VeiculosLocados')
+	DROP VIEW vw_VeiculosLocados
+GO
+
+CREATE VIEW vw_VeiculosLocados
+
+AS
+	
+	SELECT marcaVEIC AS MARCA_VEICULO
+	,placaVEIC AS PLACA_VEICULO
+	, valordiariaRES AS VALOR_DIARIA	
+	,nomeCLI AS NOME_CLIENTE
+	,CASE WHEN situacaoRES = 'A' THEN 'Veiculo ALUGADO' ELSE 'Veículo DISPONÍVEL' END AS SITUACAO_VEICULO
+	,CONVERT(DATETIME,datares) AS DATA_RESERVA
+	FROM RESERVAS
+	INNER JOIN CLIENTES ON cliRES = codCLI 
+	INNER JOIN VEICULOS ON veicRES = codVEIC
+
+GO
+
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'vw_VeiculosMaisUtilizados')
+	DROP VIEW vw_VeiculosMaisUtilizados
+GO
+
+CREATE VIEW vw_VeiculosMaisUtilizados
+
+AS
+	
+	SELECT 
+	marcaVEIC AS MARCA
+	,count(1) VEZES_ALUGADO
+	FROM RESERVAS 
+	INNER JOIN VEICULOS ON veicRES = codVEIC
+	GROUP BY codVEIC,marcaVEIC
+
+GO
+
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'vw_Pagamentos')
+	DROP VIEW vw_Pagamentos
+GO
+
+CREATE VIEW vw_Pagamentos
+
+AS
+	
+	SELECT 
+	codPGTO AS CODIGO
+	,formaPGTO AS FORMA_PGTO
+	, qtdparcelasPGTO AS PARCELAS
+	,protocoloRES AS PROTOCOLO_RESERVA
+	,marcaVEIC AS VEICULO
+	,placaVEIC AS PLACA
+	,CASE WHEN statuscartaoPGTO = 'P' THEN 'PAGO' ELSE 'EM ABERTO' END AS SITUACAO
+	FROM PGTOS 
+	INNER JOIN RESERVAS ON resPGTO = codRES
+	INNER JOIN VEICULOS ON veicRES = codRES 
+
+
+GO
+
+
+IF EXISTS(SELECT * FROM SYS.OBJECTS WHERE NAME LIKE 'vw_MULTAS')
+	DROP VIEW vw_MULTAS
+GO
+
+CREATE VIEW vw_MULTAS
+
+AS
+	
+	SELECT 
+	codMULT AS CODIGO
+	,protocoloRES AS PROTOCOLO_RESERVA
+	,marcaVEIC AS VEICULO
+	,placaVEIC AS PLACA
+	,CASE WHEN situacaoMULT = 'P' THEN 'PAGO' ELSE 'EM ABERTO' END AS SITUACAO
+	FROM MULTAS 
+	INNER JOIN RESERVAS ON resMULT = codRES
+	INNER JOIN VEICULOS ON veicRES = codRES 
+
+
+GO
+		
+				
+
+
+

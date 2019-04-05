@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIM_LocadoraVeiculos", "PIM_LocadoraVeiculos\PIM_LocadoraVeiculos.csproj", "{0ACB12AE-DE7F-4845-BA99-C7719350C45A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dll_BS_LocadoraVeiculos", "dll_BS_LocadoraVeiculos\dll_BS_LocadoraVeiculos.csproj", "{51743BA9-511A-40F8-92C7-5ECAA02CE407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dll_DB_LocadoraVeiculos", "dll_DB_LocadoraVeiculos\dll_DB_LocadoraVeiculos.csproj", "{0E9DBCD3-89A9-4FD2-87CA-FA352289DF39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dll_Uteis", "dll_Uteis\dll_Uteis.csproj", "{11152B81-B817-40EB-8E70-8B8DE8810C13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ACB12AE-DE7F-4845-BA99-C7719350C45A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACB12AE-DE7F-4845-BA99-C7719350C45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACB12AE-DE7F-4845-BA99-C7719350C45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACB12AE-DE7F-4845-BA99-C7719350C45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51743BA9-511A-40F8-92C7-5ECAA02CE407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51743BA9-511A-40F8-92C7-5ECAA02CE407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51743BA9-511A-40F8-92C7-5ECAA02CE407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51743BA9-511A-40F8-92C7-5ECAA02CE407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9DBCD3-89A9-4FD2-87CA-FA352289DF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9DBCD3-89A9-4FD2-87CA-FA352289DF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9DBCD3-89A9-4FD2-87CA-FA352289DF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9DBCD3-89A9-4FD2-87CA-FA352289DF39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11152B81-B817-40EB-8E70-8B8DE8810C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11152B81-B817-40EB-8E70-8B8DE8810C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11152B81-B817-40EB-8E70-8B8DE8810C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11152B81-B817-40EB-8E70-8B8DE8810C13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

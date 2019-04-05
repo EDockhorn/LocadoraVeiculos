@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0ACB12AE-DE7F-4845-BA99-C7719350C45A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PIM_LocadoraVeiculos</RootNamespace>
+    <AssemblyName>PIM_LocadoraVeiculos</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>7-512.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clientes\frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\frmClientes.Designer.cs">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\WebServiceCEP.cs" />
+    <Compile Include="Clientes\frmConsultaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\frmConsultaClientes.Designer.cs">
+      <DependentUpon>frmConsultaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Locacoes\frmChecklistDevolucao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Locacoes\frmChecklistDevolucao.Designer.cs">
+      <DependentUpon>frmChecklistDevolucao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Locacoes\frmFormaPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Locacoes\frmFormaPagamento.Designer.cs">
+      <DependentUpon>frmFormaPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Locacoes\frmGerenciarLocacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Locacoes\frmGerenciarLocacoes.Designer.cs">
+      <DependentUpon>frmGerenciarLocacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatorios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatorios.Designer.cs">
+      <DependentUpon>frmRelatorios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Locacoes\frmAlocacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Locacoes\frmAlocacao.Designer.cs">
+      <DependentUpon>frmAlocacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuários\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuários\frmUsuarios.Designer.cs">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Veiculos\frmConsultaVeic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Veiculos\frmConsultaVeic.Designer.cs">
+      <DependentUpon>frmConsultaVeic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funcionarios\frmConsultaFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Funcionarios\frmConsultaFunc.Designer.cs">
+      <DependentUpon>frmConsultaFunc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrincipal.Designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Veiculos\frmVeiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Veiculos\frmVeiculos.Designer.cs">
+      <DependentUpon>frmVeiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funcionarios\frmFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Funcionarios\frmFuncionarios.Designer.cs">
+      <DependentUpon>frmFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Clientes\frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\frmConsultaClientes.resx">
+      <DependentUpon>frmConsultaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locacoes\frmChecklistDevolucao.resx">
+      <DependentUpon>frmChecklistDevolucao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locacoes\frmFormaPagamento.resx">
+      <DependentUpon>frmFormaPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locacoes\frmGerenciarLocacoes.resx">
+      <DependentUpon>frmGerenciarLocacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatorios.resx">
+      <DependentUpon>frmRelatorios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locacoes\frmAlocacao.resx">
+      <DependentUpon>frmAlocacao.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuários\frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Veiculos\frmConsultaVeic.resx">
+      <DependentUpon>frmConsultaVeic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Funcionarios\frmConsultaFunc.resx">
+      <DependentUpon>frmConsultaFunc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Veiculos\frmVeiculos.resx">
+      <DependentUpon>frmVeiculos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Funcionarios\frmFuncionarios.resx">
+      <DependentUpon>frmFuncionarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7-512.ico" />
+    <Content Include="Car-Icons-35.ico" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\document-scroll-icon2.png" />
+    <None Include="Resources\document-scroll-icon1.png" />
+    <None Include="Resources\Sales-report-icon.png" />
+    <None Include="Resources\floppy-save-icon--231.png" />
+    <None Include="Resources\Hands_Holding_Key-5121.png" />
+    <None Include="Resources\Hands_Holding_Key-512.png" />
+    <None Include="Resources\7-512.png" />
+    <None Include="Resources\61360-2001.png" />
+    <Content Include="Resources\addcliente.ico" />
+    <None Include="Resources\estacionamentos.png" />
+    <None Include="Resources\estacionamento.png" />
+    <None Include="Resources\Clients-Testimonials-Icon2.png" />
+    <None Include="Resources\new-user-icon-47371.png" />
+    <None Include="Resources\add_users_group-512.png" />
+    <None Include="Resources\transport-car-front-search-find-512.png" />
+    <None Include="Resources\car-add-icon.png" />
+    <None Include="Resources\folder_customer_2562.png" />
+    <None Include="Resources\Groups-Meeting-Light-icon.png" />
+    <None Include="Resources\user-group-icon1.png" />
+    <None Include="Resources\folder_customer_2561.png" />
+    <None Include="Resources\Magnifying-Glass-icon.png" />
+    <None Include="Resources\editarcliente.png" />
+    <None Include="Resources\disksave_4a90b428-e98a-4189-82cc-fd6163c92f1a.png" />
+    <None Include="Resources\floppy-save-icon--23.png" />
+    <None Include="Resources\exit-icon-3.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\new-user-icon-4737.png" />
+    <None Include="Resources\Custom-Icon-Design-Pretty-Office-3-Add-Male-User1.png" />
+    <None Include="Resources\black-key-symbol-icon-6.png" />
+    <None Include="Resources\car-icon.png" />
+    <None Include="Resources\document-scroll-icon.png" />
+    <None Include="Resources\Sportscar-car-2-icon %281%29.png" />
+    <None Include="Resources\Sportscar-car-2-icon.png" />
+    <None Include="Resources\Office-Client-Male-Light-icon.png" />
+    <None Include="Resources\Baby-girl-icon %281%29.png" />
+    <None Include="Resources\Baby-girl-icon.png" />
+    <None Include="Resources\user_delete.png" />
+    <None Include="Resources\folder_customer_256.png" />
+    <None Include="Resources\user-group-icon.png" />
+    <None Include="Resources\Custom-Icon-Design-Pretty-Office-3-Add-Male-User.png" />
+    <None Include="Resources\61360-200.png" />
+    <None Include="Resources\Clients-Testimonials-Icon1.png" />
+    <None Include="Resources\Clients-Testimonials-Icon.png" />
+    <None Include="Resources\4628753081.jpg" />
+    <None Include="Resources\462875308.jpg" />
+    <None Include="Resources\10011772-Eine-Carrerabahn-auf-wei-em-Hintergrund-isoliert-Lizenzfreie-Bilder.jpg" />
+    <None Include="Resources\images.jpg" />
+    <None Include="Resources\Abstract-Sky-Powerpoint-Theme.jpg" />
+    <None Include="Resources\kuba_arrow_button_set_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dll_BS_LocadoraVeiculos\dll_BS_LocadoraVeiculos.csproj">
+      <Project>{51743ba9-511a-40f8-92c7-5ecaa02ce407}</Project>
+      <Name>dll_BS_LocadoraVeiculos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dll_DB_LocadoraVeiculos\dll_DB_LocadoraVeiculos.csproj">
+      <Project>{0e9dbcd3-89a9-4fd2-87ca-fa352289df39}</Project>
+      <Name>dll_DB_LocadoraVeiculos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dll_Uteis\dll_Uteis.csproj">
+      <Project>{11152b81-b817-40eb-8e70-8b8de8810c13}</Project>
+      <Name>dll_Uteis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

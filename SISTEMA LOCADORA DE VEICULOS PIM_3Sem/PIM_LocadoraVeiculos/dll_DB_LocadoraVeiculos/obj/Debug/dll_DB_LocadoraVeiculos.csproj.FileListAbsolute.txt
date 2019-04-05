@@ -1,0 +1,7 @@
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\bin\Debug\dll_DB_LocadoraVeiculos.dll
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\bin\Debug\dll_DB_LocadoraVeiculos.pdb
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\bin\Debug\dll_BS_LocadoraVeiculos.dll
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\bin\Debug\dll_BS_LocadoraVeiculos.pdb
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\obj\Debug\dll_DB_LocadoraVeiculos.csprojResolveAssemblyReference.cache
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\obj\Debug\dll_DB_LocadoraVeiculos.dll
+C:\Users\Dockhorn\Desktop\SISTEMA LOCADORA DE VEICULOS PIM_3Sem\PIM_LocadoraVeiculos\dll_DB_LocadoraVeiculos\obj\Debug\dll_DB_LocadoraVeiculos.pdb

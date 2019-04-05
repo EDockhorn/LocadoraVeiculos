@@ -1,0 +1,1 @@
+Data Source='DESKTOP-O83VKJU\SQLEXPRESS';Initial Catalog='PIM_ALOCAR';Integrated Security=True
