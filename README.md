@@ -1,2 +1,3 @@
 # LocadoraVeiculos
-Sistema desenvolvido para atender o último módulo da facu
+Sistema desenvolvido para atender o último trabalho da minha graduação
+
